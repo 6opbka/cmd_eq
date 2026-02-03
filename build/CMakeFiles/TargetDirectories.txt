@@ -1,0 +1,3 @@
+/home/egor/Projects/cmd_eq/build/CMakeFiles/cmd_eq.dir
+/home/egor/Projects/cmd_eq/build/CMakeFiles/edit_cache.dir
+/home/egor/Projects/cmd_eq/build/CMakeFiles/rebuild_cache.dir
