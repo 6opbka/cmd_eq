@@ -7,21 +7,18 @@ class Renderer{
     Renderer();
     ~Renderer();
 
-    void start();
+    
     void stop();
     bool is_running() const;
+    void update(float time_delta);
+    void init();
+
     
     private:
-    std::atomic<bool> running = false;
+    bool running = false;
 
-
-    std::thread thread_;
     
-    void loop();
-    void render();
+    void render(float time_delta);
     void read_input();
-
-    int target_fps = 30;
-    float target_frametime = 0;
     
 };

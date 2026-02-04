@@ -47,21 +47,28 @@ build cmake_object_order_depends_target_cmd_eq: phony || CMakeFiles/cmd_eq.dir
 build CMakeFiles/cmd_eq.dir/src/main.cpp.o: CXX_COMPILER__cmd_eq_unscanned_ /home/egor/Projects/cmd_eq/src/main.cpp || cmake_object_order_depends_target_cmd_eq
   DEP_FILE = CMakeFiles/cmd_eq.dir/src/main.cpp.o.d
   FLAGS = -std=gnu++17
-  INCLUDES = -I/home/egor/Projects/cmd_eq/external
+  INCLUDES = -I/home/egor/Projects/cmd_eq/external -I/home/egor/Projects/cmd_eq/src/src
   OBJECT_DIR = CMakeFiles/cmd_eq.dir
   OBJECT_FILE_DIR = CMakeFiles/cmd_eq.dir/src
 
 build CMakeFiles/cmd_eq.dir/src/renderer.cpp.o: CXX_COMPILER__cmd_eq_unscanned_ /home/egor/Projects/cmd_eq/src/renderer.cpp || cmake_object_order_depends_target_cmd_eq
   DEP_FILE = CMakeFiles/cmd_eq.dir/src/renderer.cpp.o.d
   FLAGS = -std=gnu++17
-  INCLUDES = -I/home/egor/Projects/cmd_eq/external
+  INCLUDES = -I/home/egor/Projects/cmd_eq/external -I/home/egor/Projects/cmd_eq/src/src
   OBJECT_DIR = CMakeFiles/cmd_eq.dir
   OBJECT_FILE_DIR = CMakeFiles/cmd_eq.dir/src
 
 build CMakeFiles/cmd_eq.dir/src/audio.cpp.o: CXX_COMPILER__cmd_eq_unscanned_ /home/egor/Projects/cmd_eq/src/audio.cpp || cmake_object_order_depends_target_cmd_eq
   DEP_FILE = CMakeFiles/cmd_eq.dir/src/audio.cpp.o.d
   FLAGS = -std=gnu++17
-  INCLUDES = -I/home/egor/Projects/cmd_eq/external
+  INCLUDES = -I/home/egor/Projects/cmd_eq/external -I/home/egor/Projects/cmd_eq/src/src
+  OBJECT_DIR = CMakeFiles/cmd_eq.dir
+  OBJECT_FILE_DIR = CMakeFiles/cmd_eq.dir/src
+
+build CMakeFiles/cmd_eq.dir/src/coordinator.cpp.o: CXX_COMPILER__cmd_eq_unscanned_ /home/egor/Projects/cmd_eq/src/coordinator.cpp || cmake_object_order_depends_target_cmd_eq
+  DEP_FILE = CMakeFiles/cmd_eq.dir/src/coordinator.cpp.o.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I/home/egor/Projects/cmd_eq/external -I/home/egor/Projects/cmd_eq/src/src
   OBJECT_DIR = CMakeFiles/cmd_eq.dir
   OBJECT_FILE_DIR = CMakeFiles/cmd_eq.dir/src
 
@@ -73,7 +80,7 @@ build CMakeFiles/cmd_eq.dir/src/audio.cpp.o: CXX_COMPILER__cmd_eq_unscanned_ /ho
 #############################################
 # Link the executable cmd_eq
 
-build cmd_eq: CXX_EXECUTABLE_LINKER__cmd_eq_ CMakeFiles/cmd_eq.dir/src/main.cpp.o CMakeFiles/cmd_eq.dir/src/renderer.cpp.o CMakeFiles/cmd_eq.dir/src/audio.cpp.o | /usr/lib/x86_64-linux-gnu/libncursesw.so /usr/lib/x86_64-linux-gnu/libformw.so
+build cmd_eq: CXX_EXECUTABLE_LINKER__cmd_eq_ CMakeFiles/cmd_eq.dir/src/main.cpp.o CMakeFiles/cmd_eq.dir/src/renderer.cpp.o CMakeFiles/cmd_eq.dir/src/audio.cpp.o CMakeFiles/cmd_eq.dir/src/coordinator.cpp.o | /usr/lib/x86_64-linux-gnu/libncursesw.so /usr/lib/x86_64-linux-gnu/libformw.so
   LINK_LIBRARIES = -lncursesw  /usr/lib/x86_64-linux-gnu/libformw.so
   OBJECT_DIR = CMakeFiles/cmd_eq.dir
   POST_BUILD = :
