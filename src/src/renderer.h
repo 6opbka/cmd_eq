@@ -1,10 +1,13 @@
 #pragma once
 #include<thread>
 #include<atomic>
+#include "data.h"
+#include "ui.h"
+
 
 class Renderer{
     public:
-    Renderer();
+    Renderer(AudioState& audio_state, AudioControls& audio_controls);
     ~Renderer();
 
     
@@ -16,6 +19,13 @@ class Renderer{
     
     private:
     bool running = false;
+    int frame_num = 0;
+    AudioState& audio_state;
+    AudioControls& audio_controls;
+    void read_audio_state();
+    UI ui;
+
+    
 
     
     void render(float time_delta);

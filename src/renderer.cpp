@@ -6,9 +6,12 @@
 
 using namespace std;
 
-Renderer::Renderer():
+Renderer::Renderer(AudioState& audio_state, AudioControls& audio_controls):
+    audio_state(audio_state),
+    audio_controls(audio_controls),
     running(true)
 {
+    ui.enable_debug_mode(true);
 }
 
 Renderer::~Renderer()
@@ -26,9 +29,20 @@ bool Renderer::is_running() const{
     return running;
 }
 
+void Renderer::read_audio_state(){
+
+
+    ui.set_vol(audio_state.volume.load());
+    ui.set_time_left(audio_state.time_left.load());
+    ui.set_playing(audio_state.playing.load());
+}
+
+
 void Renderer::update(float time_delta){
     
+    read_audio_state();
     render(time_delta);
+    read_input();
 }
 
 void Renderer::render(float time_delta){
@@ -36,10 +50,12 @@ void Renderer::render(float time_delta){
         erase();
 
         double fps = (time_delta > 0.0) ? 1.0 / time_delta : 0.0;
-        std::string s = "FPS: " + std::to_string((int)fps);
-        mvprintw(0, 0, "%s", s.c_str());
+        ui.set_fps(fps);
+        ui.set_frame_num(frame_num);
 
-        read_input();
+        ui.compose_frame();
+
+        frame_num++;
         refresh();
 }
 
@@ -48,6 +64,7 @@ void Renderer::init(){
     noecho();
     cbreak();
     curs_set(0);
+    // attron(A_ALTCHARSET);
     keypad(stdscr,TRUE);
     nodelay(stdscr, TRUE);
 }
@@ -62,6 +79,14 @@ void Renderer::read_input(){
     case 'q':
         running = false;
         break;
+
+    case ' ':
+        {
+        bool playing = audio_state.playing.load();
+        audio_controls.command.store(
+        playing ? AudioCommand::Pause : AudioCommand::Play);
+    break;
+    }
     
     default:
         break;

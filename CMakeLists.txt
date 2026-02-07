@@ -12,6 +12,7 @@ add_executable(cmd_eq
     src/renderer.cpp
     src/audio.cpp
     src/coordinator.cpp
+    src/ui.cpp
     
 )
 

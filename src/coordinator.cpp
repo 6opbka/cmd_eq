@@ -23,14 +23,16 @@ void Coordinator::loop(){
     
     char* path = "shrekophone.mp3";
     player.add_track(path);
+    player.init();
+    player.start();
+
 
     // TODO: 
     // Need to put player into separate thread so that it is not blocking code further down.
     // Add data struct
     // Add sync method
-    
 
-    // player.init();
+
 
     using clock = std::chrono::steady_clock;
     auto last_time = clock::now();

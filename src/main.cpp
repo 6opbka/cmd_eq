@@ -1,20 +1,16 @@
-#include <ncurses.h>
-#include <unistd.h>
 #include "renderer.h"
 #include "audio.h"
-#include <thread>
-#include <chrono>
-#include <string>
-#include <iostream>
-#include <audio_state.h>
-#include <coordinator.h>
+#include "data.h"
+#include "coordinator.h"
 
-using namespace std::chrono_literals;
 
-int main(void) {
-    
-    Renderer renderer;
-    AudioPlayer audio_player;
+int main() {
+    AudioState audio_state;
+    AudioControls audio_controls;
+
+    Renderer renderer(audio_state,audio_controls);
+    AudioPlayer audio_player(audio_state,audio_controls);
+
     Coordinator coordinator(renderer,audio_player);
     coordinator.loop();
 
