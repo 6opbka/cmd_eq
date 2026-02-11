@@ -13,6 +13,8 @@ add_executable(cmd_eq
     src/audio.cpp
     src/coordinator.cpp
     src/ui.cpp
+    src/fft.cpp
+    src/ring_buffer.cpp
     
 )
 
@@ -20,6 +22,8 @@ target_include_directories(cmd_eq
     PRIVATE
         ${CURSES_INCLUDE_DIRS}
         ${CMAKE_CURRENT_SOURCE_DIR}/external
+        ${CMAKE_CURRENT_SOURCE_DIR}/external/kissfft
+
         ${CMAKE_CURRENT_SOURCE_DIR}/src/src
 
 )

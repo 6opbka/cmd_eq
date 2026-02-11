@@ -35,6 +35,8 @@ void Renderer::read_audio_state(){
     ui.set_vol(audio_state.volume.load());
     ui.set_time_left(audio_state.time_left.load());
     ui.set_playing(audio_state.playing.load());
+    ui.set_cursor_pos(audio_state.cursor_pos.load());
+    ui.set_last_sample(audio_state.last_sample.load());
 }
 
 

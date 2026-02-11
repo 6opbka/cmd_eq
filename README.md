@@ -4,9 +4,9 @@ Terminal audio player in C++ with ncurses UI.
 
 ## Features
 - Audio playback (miniaudio)
-- FPS counter
 - Keyboard control
 - Lock-free audio ↔ UI communication
+- Audio visualisation (to be implemented)
 
 ## Architecture
 - Renderer — input + rendering
@@ -26,12 +26,14 @@ ninja
 - [x] Renderer class
 - [x] UI class  
 - [x] Data bus between above
-- [ ] Data bus for controls
+- [x] Data bus for controls
 - [ ] Metadata parsing
+- [ ] FFT for visualisation
 - [ ] Somewhat UI
 - [ ] Audio visualisation
 - [ ] Config file
 - [ ] Reading playlist from dir  
+- [ ] Actual UI with visualisation
 
 
 
