@@ -2,6 +2,10 @@
 
 Terminal audio player in C++ with ncurses UI.
 
+<p align="center">
+  <img src="img/image.png" alt="screenshot" width="800">
+</p>
+
 ## Features
 - Audio playback (miniaudio)
 - Keyboard control
@@ -18,7 +22,7 @@ Terminal audio player in C++ with ncurses UI.
 ```bash
 mkdir build 
 cd build
-cmake -G ninja .
+cmake -G ninja ..
 ninja
 ```
 ## TODO
@@ -28,9 +32,9 @@ ninja
 - [x] Data bus between above
 - [x] Data bus for controls
 - [ ] Metadata parsing
-- [ ] FFT for visualisation
+- [x] FFT for visualisation
 - [ ] Somewhat UI
-- [ ] Audio visualisation
+- [x] Audio visualisation
 - [ ] Config file
 - [ ] Reading playlist from dir  
 - [ ] Actual UI with visualisation
