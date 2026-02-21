@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class UI
 {
@@ -17,7 +18,7 @@ private:
     int frame_count = 0;
 
     void draw_bar(int x, int y, int height);
-    void visualise();
+    void visualise(float* spectrum, int bands);
 
 public:
     void enable_debug_mode(bool enable);
@@ -30,8 +31,9 @@ public:
     void set_frame_count(int frame_count);
     void set_cursor_pos(float cursor_pos_);
     void set_last_sample(float sample);
+    void set_bar_heights(std::vector<float>& bars);
 
-    void compose_frame();
+    void compose_frame(float* spectrum, int bands);
     
 
     UI();

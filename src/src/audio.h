@@ -3,6 +3,7 @@
 #include "data.h"
 #include <thread>
 #include <atomic>
+#include "ring_buffer.h"
 
 // Main audio handler class
 // Basically a wrapper around miniaudio lib
@@ -19,6 +20,7 @@ private:
 
     AudioState& audio_state;
     AudioControls& audio_controls;
+    RingBuffer& ring_buffer;
 
     char* file_path;
 
@@ -37,7 +39,7 @@ private:
 
 
 public:
-    AudioPlayer(AudioState& audio_state,AudioControls& audio_controls);
+    AudioPlayer(AudioState& audio_state,AudioControls& audio_controls, RingBuffer& ring_buffer);
     ~AudioPlayer();
     void process_input();
     void update_state();

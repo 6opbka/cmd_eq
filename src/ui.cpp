@@ -2,9 +2,11 @@
 #include<ncurses.h>
 #include<unistd.h>
 #include<string>
+#include<iostream>
 
 
-UI::UI(){}
+UI::UI(){
+}
 
 UI::~UI(){}
 
@@ -44,9 +46,13 @@ void UI::set_cursor_pos(float cursor_pos_){
 
 void UI::set_last_sample(float sample_){
     last_sample = sample_;
-}   
+} 
 
-void UI::compose_frame(){
+void UI::set_bar_heights(std::vector<float>& bar_heights){
+    
+}
+
+void UI::compose_frame(float* spectrum, int bands){
     // set fields
     std::string vol_ = "Vol: "+std::to_string(volume);
     std::string time_left_ = "Time left: "+std::to_string(time_left);
@@ -65,7 +71,7 @@ void UI::compose_frame(){
 
 
     // draw_bar((COLS-1)/2,(LINES-1)/2,5);
-    visualise();
+    visualise(spectrum, bands);
 
 
     // if debug enabled
@@ -78,13 +84,16 @@ void UI::compose_frame(){
 }
 
 void UI::draw_bar(int x, int y, int height){
-    for(int i = y; i<height+y;i++){
-        mvprintw(i,x,"%s","#");
+    for(int i = 0; i<height;i++){
+        mvprintw(y-i,x,"%s","#");
     }
 }
 
-void UI::visualise(){
-    for(int i = 60; i< 90;i++){
-        draw_bar(i,(LINES-1)/2,5);
+void UI::visualise(float* spectrum, int bands){
+    int offset = 30;
+    for(int b = 0; b<bands;b++){
+        int bar_height = static_cast<int>(spectrum[b])*(1);
+        
+        draw_bar(b+offset,(LINES-1)/2+20,bar_height);
     }
 }

@@ -5,9 +5,10 @@
 #include <thread>
 #include <cstring>
 
-AudioPlayer::AudioPlayer(AudioState& audio_state, AudioControls& audio_controls):
+AudioPlayer::AudioPlayer(AudioState& audio_state, AudioControls& audio_controls, RingBuffer& ring_buffer):
     audio_state(audio_state),
-    audio_controls(audio_controls)
+    audio_controls(audio_controls),
+    ring_buffer(ring_buffer)
 {}
 
 AudioPlayer::~AudioPlayer()
@@ -137,6 +138,10 @@ void AudioPlayer::on_audio(const float* samples, ma_uint32 frame_count_, ma_uint
     frame_count.store(frame_count_);
     played_frames.fetch_add(frames_read_);
     audio_state.last_sample.store(samples[0]);
+    for(size_t id = 0;id<frames_read_;id++){
+        ring_buffer.push(samples[id]);
+    }
+    // std::cout<<"copy done, size: "<<ring_buffer.get_current_write_pos()<<"   \n";
 }
 
 bool AudioPlayer::track_ended(){

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(cmd_eq LANGUAGES CXX)
+project(cmd_eq LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -15,7 +15,9 @@ add_executable(cmd_eq
     src/ui.cpp
     src/fft.cpp
     src/ring_buffer.cpp
+    src/double_buffer.cpp
     
+    external/kissfft/kiss_fft.c
 )
 
 target_include_directories(cmd_eq

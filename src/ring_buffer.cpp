@@ -1,7 +1,7 @@
 #include "ring_buffer.h"
 
 
-RingBuffer::RingBuffer(size_t):
+RingBuffer::RingBuffer(size_t size):
     samples(size),
     size(size),
     write_pos(0)
@@ -20,4 +20,8 @@ void RingBuffer::get_last(float* out, size_t N){
     for (size_t i = 0; i < N; ++i) {
     out[i] = samples[(pos + size - N + i) % size];
     }
+}
+
+size_t RingBuffer::get_current_write_pos(){
+    return write_pos.load()%size;
 }

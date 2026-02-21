@@ -4,9 +4,10 @@
 
 
 
-Coordinator::Coordinator(Renderer& renderer, AudioPlayer& player):
+Coordinator::Coordinator(Renderer& renderer, AudioPlayer& player, FFT& fft):
     renderer(renderer),
-    player(player)
+    player(player),
+    fft(fft)
 {
     target_frametime = 1.0/target_fps;
     
@@ -26,11 +27,8 @@ void Coordinator::loop(){
     player.init();
     player.start();
 
-
-    // TODO: 
-    // Need to put player into separate thread so that it is not blocking code further down.
-    // Add data struct
-    // Add sync method
+    fft.init();
+    fft.start();
 
 
 
