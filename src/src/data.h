@@ -21,3 +21,8 @@ struct AudioControls
 {   
     std::atomic<AudioCommand> command {AudioCommand::None};
 };
+
+struct Vector2{
+    int x = 0;
+    int y = 0;
+};

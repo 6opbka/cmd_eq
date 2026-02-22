@@ -71,7 +71,7 @@ void UI::compose_frame(float* spectrum, int bands){
 
 
     // draw_bar((COLS-1)/2,(LINES-1)/2,5);
-    visualise(spectrum, bands);
+    visualiser(spectrum, bands);
 
 
     // if debug enabled
@@ -83,17 +83,74 @@ void UI::compose_frame(float* spectrum, int bands){
 
 }
 
-void UI::draw_bar(int x, int y, int height){
+void UI::draw_bar(Vector2 pos, int height){
     for(int i = 0; i<height;i++){
-        mvprintw(y-i,x,"%s","#");
+        mvprintw(pos.y-i,pos.x,"%s","#");
     }
 }
 
-void UI::visualise(float* spectrum, int bands){
-    int offset = 30;
-    for(int b = 0; b<bands;b++){
-        int bar_height = static_cast<int>(spectrum[b])*(1);
-        
-        draw_bar(b+offset,(LINES-1)/2+20,bar_height);
+void UI::visualiser(float* spectrum, int bands){
+    int offset = (COLS - bands) / 2;
+
+    float max_val = 0.0f;
+    for (int b = 0; b < bands; b++)
+        max_val = std::max(spectrum[b], max_val);
+
+    int win_height = 20;
+
+    int center_y = LINES / 2;
+    int bottom   = center_y + win_height / 2;
+    int top      = bottom - win_height;
+
+    for(int b = 0; b < bands; b++){
+        float normalized = (max_val > 0.0f)
+                           ? spectrum[b] / max_val
+                           : 0.0f;
+
+        int bar_height = static_cast<int>(normalized * win_height);
+
+        Vector2 pos{ b + offset, bottom };
+        draw_bar(pos, bar_height);
+    }
+
+    Vector2 top_left  = { offset+1,        top-1 };
+    Vector2 bot_right = { offset+bands+1,  bottom };
+
+    draw_rect(top_left, bot_right);
+}
+
+
+// Draws square with corners at a (top left) and b (bottom right)
+
+// a-----
+// |     |
+// |     |
+// ------b
+void UI::draw_rect(Vector2 a, Vector2 b){
+    int left   = std::min(a.x, b.x);
+    int right  = std::max(a.x, b.x);
+    int top    = std::min(a.y, b.y);
+    int bottom = std::max(a.y, b.y);
+
+    int width  = right - left;
+    int height = bottom - top;
+    
+    
+    draw_vertical_bar({left, top+1}, height);
+    draw_vertical_bar({right, top+1}, height);
+    draw_horizontal_bar({left+1, top}, width-1);
+    draw_horizontal_bar({left+1, bottom}, width-1);
+}
+
+void UI::draw_horizontal_bar(Vector2 pos, int width){
+    std::string bar(width,'_');
+    mvprintw(pos.y,pos.x,"%s",bar.c_str());
+}
+
+
+
+void UI::draw_vertical_bar(Vector2 pos, int height){
+    for(int i = 0; i < height; i++){
+        mvprintw(pos.y + i, pos.x, "|");
     }
 }

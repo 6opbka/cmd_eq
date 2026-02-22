@@ -78,6 +78,7 @@ void AudioPlayer::stop() {
     ma_device_uninit(&device);
     ma_decoder_uninit(&decoder);
     running = false;
+    if(thread_.joinable()) thread_.join();
 }
 
 void AudioPlayer::add_track(char* path){

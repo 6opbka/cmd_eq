@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "data.h"
 
 class UI
 {
@@ -17,8 +18,14 @@ private:
 
     int frame_count = 0;
 
-    void draw_bar(int x, int y, int height);
-    void visualise(float* spectrum, int bands);
+    void draw_bar(Vector2 pos, int height);
+    void visualiser(float* spectrum, int bands);
+
+    void draw_vertical_bar(Vector2 pos, int height);
+    void draw_horizontal_bar(Vector2 pos, int width);
+    void draw_rect(Vector2 a, Vector2 b);
+
+    
 
 public:
     void enable_debug_mode(bool enable);
